@@ -185,3 +185,43 @@ $database = "candidate_scoring";
 ### **📌 What's Improved?**
 ✅ **Version Updated:** `1.0.1`  
 ✅ **Security & Troubleshooting Section Improved**  
+
+---
+
+## **📝 Changelog (v1.0.1)**
+
+### **🔒 Security Enhancements**
+- Added secure session configuration with HttpOnly, Secure, and SameSite flags
+- Implemented session regeneration every 5 minutes
+- Added IP-based session protection against hijacking
+- Enhanced security headers (X-Content-Type-Options, X-Frame-Options, etc.)
+- Improved error handling with secure logging
+
+### **📊 Performance Optimizations**
+- Optimized database queries with proper indexing
+- Added pagination to HR dashboard (10 items per page)
+- Improved GROUP BY clauses for better MySQL compatibility
+- Enhanced database connection with proper charset settings
+- Added proper error reporting configuration
+
+### **📄 PDF Report Improvements**
+- Enhanced PDF styling with better visual hierarchy
+- Added custom header and footer to reports
+- Improved evaluation card layout
+- Added proper HTML escaping for all data
+- Added check for empty evaluations
+
+### **💻 UI/UX Improvements**
+- Added Bootstrap Icons for better visual feedback
+- Enhanced table responsiveness
+- Improved error message display
+- Added evaluation count column
+- Enhanced pagination navigation
+
+### **🛠 Code Quality**
+- Improved input validation and sanitization
+- Enhanced error handling and logging
+- Better code organization and documentation
+- Standardized coding style across files
+
+---
