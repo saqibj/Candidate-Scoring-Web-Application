@@ -22,28 +22,40 @@ $result = $conn->query("SELECT candidates.id, candidates.name, candidates.positi
 </head>
 <body class="container mt-5">
     <h2>HR Dashboard</h2>
-    <table class="table table-bordered mt-3">
-        <thead>
-            <tr>
-                <th>Name</th>
-                <th>Position</th>
-                <th>Average Score</th>
-                <th>Reports</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php while ($row = $result->fetch_assoc()) { ?>
+    
+    <?php if (isset($_GET['error'])): ?>
+        <div class="alert alert-danger">
+            <?= htmlspecialchars($_GET['error'] === 'invalid_id' ? 'Invalid candidate ID' : 'Candidate not found') ?>
+        </div>
+    <?php endif; ?>
+    
+    <div class="table-responsive">
+        <table class="table table-bordered table-hover">
+            <thead class="table-dark">
                 <tr>
-                    <td><?= htmlspecialchars($row['name']) ?></td>
-                    <td><?= htmlspecialchars($row['position_applied']) ?></td>
-                    <td><?= number_format($row['avg_score'], 2) ?></td>
-                    <td>
-                        <a href="../reports/generate.php?id=<?= $row['id'] ?>" class="btn btn-success">Generate Report</a>
-                    </td>
+                    <th>Name</th>
+                    <th>Position</th>
+                    <th>Average Score</th>
+                    <th class="text-center">Actions</th>
                 </tr>
-            <?php } ?>
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+                <?php while ($row = $result->fetch_assoc()): ?>
+                    <tr>
+                        <td><?= htmlspecialchars($row['name']) ?></td>
+                        <td><?= htmlspecialchars($row['position_applied']) ?></td>
+                        <td><?= number_format($row['avg_score'], 2) ?></td>
+                        <td class="text-center">
+                            <a href="../reports/generate.php?id=<?= $row['id'] ?>" 
+                               class="btn btn-success btn-sm">
+                                <i class="bi bi-file-pdf"></i> Generate Report
+                            </a>
+                        </td>
+                    </tr>
+                <?php endwhile; ?>
+            </tbody>
+        </table>
+    </div>
     <a href="../auth/logout.php" class="btn btn-danger">Logout</a>
 </body>
 </html>
