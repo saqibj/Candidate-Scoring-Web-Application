@@ -137,21 +137,11 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 
 ---
 
-## **Screenshots**
-
-![Login Page](assets/images/login.png)  
-![Dashboard](assets/images/dashboard.png)  
-![Candidate Scoring Form](assets/images/scoring_form.png)  
-![Report Generation](assets/images/report.png)
-
----
-
 ## **Contact**
 
 For questions or feedback, please contact:  
-**Your Name**  
-**Email:** your.email@example.com  
-**GitHub:** [your-username](https://github.com/your-username)
+**Saqib Jawaid**  
+**GitHub:** [saqibj](https://github.com/saqibj)
 
 ---
 
