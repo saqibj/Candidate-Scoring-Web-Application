@@ -1,148 +1,187 @@
-# **Candidate Scoring Web Application**
-
-A **PHP-based web application** designed to streamline the candidate evaluation process during interviews. This application allows interviewers to submit scoring sheets, HR to generate reports, and admins to manage users and system settings. It includes role-based access control, a MySQL database for data storage, and features like weighted scoring, PDF/Excel report generation, and search functionality.
+Here's the **updated `README.md`** with **developer name (`Saqib Jawaid`)** and **version (`1.0.1`)**.
 
 ---
 
-## **Features**
+## **📄 `README.md`**
+```md
+# Candidate Scoring System (PHP & MySQL) - v1.0.1
 
-1. **Role-Based Access Control:**
-   - **Admin:** Manage users, view all reports, and configure system settings.
-   - **Interviewer:** Submit candidate scoring sheets and view their own reports.
-   - **HR:** View all reports, generate PDF/Excel reports, and search/filter candidates.
+### 📌 Overview
+The **Candidate Scoring System** is a **PHP web application** that enables organizations to **evaluate job candidates** efficiently. It provides **role-based dashboards**, **structured evaluations**, **report generation**, and **secure authentication**.
 
-2. **Candidate Scoring Sheet:**
-   - Dynamic form for entering candidate details and scores.
-   - Automatically calculates weighted overall scores.
+## **🚀 Features**
+✅ **User Authentication**
+- Secure login system (Admin, Interviewer, HR)
+- Password hashing for security (bcrypt)
+- Role-based access control (RBAC)
 
-3. **Reporting:**
-   - Generate PDF or Excel reports for candidates.
-   - Filter reports by date, interviewer, or position.
+✅ **Candidate Management**
+- Add, view, delete candidate profiles
+- Resume upload & storage
 
-4. **Search and Filter:**
-   - Search for candidates by name, position, or interview date.
+✅ **Candidate Evaluations**
+- Structured scoring system (Weighted Overall Score)
+- Real-time evaluation submission
+- Comments & feedback support
 
-5. **User Authentication:**
-   - Secure login/logout functionality with password hashing.
-   - Password reset feature.
+✅ **Reports & Analytics**
+- **PDF Report Generation** (HR/Admin)
+- **Dashboard analytics** (Candidate trends & scores)
 
-6. **Audit Logs:**
-   - Track user actions (e.g., login attempts, report submissions).
-
-7. **Responsive Design:**
-   - Mobile-friendly interface using Bootstrap.
-
----
-
-## **Technologies Used**
-
-- **Frontend:** HTML, CSS, JavaScript (Bootstrap, jQuery).
-- **Backend:** PHP.
-- **Database:** MySQL.
-- **Reporting:** FPDF (for PDF reports), PhpSpreadsheet (for Excel reports).
-- **Authentication:** PHP sessions and password hashing.
+✅ **Security & Optimization**
+- SQL Injection protection (Prepared Statements)
+- CSRF & XSS Prevention
+- `.htaccess` file protection for sensitive data
 
 ---
 
-## **Directory Structure**
-
+## **📂 Project Folder Structure**
 ```
-candidate_scoring_app/
-├── index.php
-├── login.php
-├── logout.php
-├── register.php
-├── dashboard.php
-├── admin/
-├── interviewer/
-├── hr/
-├── includes/
-├── assets/
-├── reports/
-├── logs/
-├── config/
-└── README.md
+/candidate-scoring
+│── /config
+│   ├── database.php         # Database connection
+│── /public
+│   ├── index.php           # Entry point, redirects users
+│── /auth
+│   ├── register.php        # User Registration
+│   ├── login.php           # User Login
+│   ├── logout.php          # User Logout
+│── /dashboard
+│   ├── admin.php           # Admin Dashboard
+│   ├── interviewer.php     # Interviewer Dashboard
+│   ├── hr.php              # HR Dashboard
+│── /candidates
+│   ├── add.php             # Add Candidates
+│   ├── view.php            # View Candidate List
+│   ├── delete.php          # Delete Candidate
+│── /evaluations
+│   ├── evaluate.php        # Candidate Evaluation Form
+│── /reports
+│   ├── generate.php        # PDF Report Generation
+│── /assets
+│   ├── style.css           # CSS for UI styling
+│── /libs
+│   ├── tcpdf/              # Library for PDF Generation
+│── .htaccess               # Security configurations
+│── README.md               # Project Documentation
+│── candidate_scoring.sql   # Database Schema
 ```
 
 ---
 
-## **Setup Instructions**
+## **🛠️ Installation Guide**
+### **🔹 1. Install XAMPP/WAMP**
+Download and install **[XAMPP](https://www.apachefriends.org/download.html)** or **WAMP** for a **PHP & MySQL environment**.
 
-### **Prerequisites**
-- PHP 7.0 or higher.
-- MySQL database.
-- Web server (e.g., Apache, Nginx).
-- Composer (for installing PHP libraries).
-
-### **Steps to Run Locally**
-
-1. **Clone the Repository:**
-   ```bash
-   git clone https://github.com/your-username/candidate-scoring-app.git
-   cd candidate-scoring-app
+### **🔹 2. Set Up MySQL Database**
+1. Open `phpMyAdmin` or MySQL CLI.
+2. Create a database:
+   ```sql
+   CREATE DATABASE candidate_scoring;
    ```
+3. Import the database schema (`candidate_scoring.sql`):
+   - In **phpMyAdmin**, select `candidate_scoring` → Import → Choose `candidate_scoring.sql`.
 
-2. **Set Up the Database:**
-   - Create a MySQL database and import the provided SQL schema.
-   - Update the database credentials in `config/config.php`.
+### **🔹 3. Configure Database Connection**
+Edit `/config/database.php` and update database credentials:
+```php
+$host = "localhost";
+$user = "root";         // Change if necessary
+$password = "";         // Change if necessary
+$database = "candidate_scoring";
+```
 
-3. **Install Dependencies:**
-   - Install FPDF and PhpSpreadsheet using Composer:
-     ```bash
-     composer require setasign/fpdf mpdf/mpdf phpoffice/phpspreadsheet
-     ```
+### **🔹 4. Setup PDF Generation (TCPDF)**
+1. **Download TCPDF**: [Get TCPDF](https://github.com/tecnickcom/TCPDF)
+2. Extract it into `/libs/tcpdf/`
 
-4. **Configure the Web Server:**
-   - Point your web server to the `candidate-scoring-app` directory.
-   - Ensure `mod_rewrite` is enabled for clean URLs.
+### **🔹 5. Start the Local Server**
+1. Open XAMPP/WAMP and start:
+   - **Apache** (for PHP)
+   - **MySQL** (for the database)
+2. Visit:
+   ```
+   http://localhost/candidate-scoring/public/
+   ```
+---
 
-5. **Run the Application:**
-   - Open the application in your browser (e.g., `http://localhost/candidate-scoring-app`).
-   - Log in using the default admin credentials (update these after the first login).
+## **🔑 Default Credentials**
+| Role         | Username     | Password    |
+|-------------|-------------|-------------|
+| **Admin**    | `admin`     | `password123` |
+| **Interviewer** | `interviewer` | `password123` |
+| **HR**       | `hr`        | `password123` |
+
+⚠️ **Change passwords after first login!**
 
 ---
 
-## **Usage**
-
-1. **Admin:**
-   - Manage users and view all reports.
-   - Configure system settings.
-
-2. **Interviewer:**
-   - Submit candidate scoring sheets.
-   - View reports submitted by themselves.
-
-3. **HR:**
-   - View all candidate reports.
-   - Generate PDF/Excel reports.
-   - Search and filter candidates.
+## **🔒 Security Best Practices**
+- **Password Hashing**: All user passwords are securely stored using `bcrypt`.
+- **Prepared Statements**: Prevents **SQL Injection** vulnerabilities.
+- **Session-based Authentication**: Ensures secure user access.
+- **File Access Restrictions (`.htaccess`)**:
+  - Prevents direct access to `config/database.php`
+  - Blocks access to `libs/`
 
 ---
 
-## **Contributing**
+## **📊 How to Use**
+### **🔹 For Interviewers**
+1. **Login as an Interviewer**.
+2. Click **"Evaluate Candidates"**.
+3. Fill out scores & comments.
+4. Submit the evaluation.
 
-Contributions are welcome! Please follow these steps:
+### **🔹 For HR**
+1. **Login as HR**.
+2. View candidate reports.
+3. Generate **PDF Reports**.
+4. Monitor average candidate scores.
 
-1. Fork the repository.
-2. Create a new branch (`git checkout -b feature/YourFeatureName`).
-3. Commit your changes (`git commit -m 'Add some feature'`).
-4. Push to the branch (`git push origin feature/YourFeatureName`).
-5. Open a pull request.
-
----
-
-## **License**
-
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
-
----
-
-## **Contact**
-
-For questions or feedback, please contact:  
-**Saqib Jawaid**  
-**GitHub:** [saqibj](https://github.com/saqibj)
+### **🔹 For Admin**
+1. **Login as Admin**.
+2. Manage users, candidates, and evaluations.
 
 ---
 
-This description provides a comprehensive overview of the project and makes it easy for others to understand, use, and contribute to it. Let me know if you need further adjustments!
+## **🛠️ Troubleshooting**
+### **❌ Apache/MySQL Not Starting?**
+- **Port Conflict?** Change Apache port from `80` to `8080` in **XAMPP Control Panel**.
+- Run:
+  ```
+  netstat -ano | findstr :80
+  ```
+  If another process is using the port, **stop it** or change Apache's port.
+
+### **❌ Blank Page / Errors?**
+1. Enable PHP error reporting: Edit `php.ini` and set:
+   ```ini
+   display_errors = On
+   ```
+2. Restart Apache & refresh the page.
+
+### **❌ Database Connection Failed?**
+- Check `/config/database.php` and verify MySQL credentials.
+- Ensure MySQL service is **running** in XAMPP/WAMP.
+
+---
+
+## **📌 Future Enhancements**
+🚀 **Email Notifications**: Interview reminders & HR updates.  
+🚀 **Interview Scheduling**: Integrated calendar for booking interviews.  
+🚀 **Advanced Analytics**: AI-based resume screening & trend analysis.  
+
+---
+
+## **🎯 Author & License**
+- **Developed by:** Saqib Jawaid  
+- **Version:** 1.0.1  
+- **License:** MIT  
+```
+
+---
+
+### **📌 What's Improved?**
+✅ **Version Updated:** `1.0.1`  
+✅ **Security & Troubleshooting Section Improved**  
